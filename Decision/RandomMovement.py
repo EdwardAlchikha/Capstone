@@ -1,15 +1,15 @@
 from random import random
 
-from Actuation.StrawsAndPopsicleSticks import StrawsAndPopsicleSticks
+from Actuation.IVehicleActuator import IVehicleActuator
 from Decision.IDecisionMaker import IDecisionMaker
-from Vision.DoesNothingCamera import DoesNothingCamera
+from Vision.ICamera import ICamera
 
 
 class RandomMovement(IDecisionMaker):
 
-    def __init__(self):
-        self._vehicle_actuator = StrawsAndPopsicleSticks()
-        self._camera = DoesNothingCamera()
+    def __init__(self, vehicle_actuator: IVehicleActuator, camera: ICamera):
+        self._vehicle_actuator = vehicle_actuator
+        self._camera = camera
 
     def start(self):
         self._vehicle_actuator.speed = random() * 0.5
